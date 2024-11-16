@@ -310,7 +310,7 @@ const slides = [
         )
       case 'news':
         return (
-          <div className="space-y-12">
+          <div className="space-y-12 ">
             <h2 className="text-3xl font-bold text-center mb-12">最新动态</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
@@ -426,7 +426,7 @@ const slides = [
         )
       case 'contact':
         return (
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto absolute inset-0 top-1/2 -translate-y-1/2">
             <h2 className="text-3xl font-bold text-center mb-12">联系我们</h2>
             <Card className="overflow-hidden">
               <div className="grid md:grid-cols-2">
@@ -561,7 +561,9 @@ const slides = [
                     >
                       <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white">{slide.title}</h1>
                       <p className="text-lg mb-6 text-gray-200">{slide.description}</p>
-                      <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                      <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100"
+                        onClick={() => setActiveTab('clients')}
+>
                         了解更多 <ChevronRight className="ml-2 h-5 w-5" />
                       </Button>
                     </motion.div>
