@@ -18,6 +18,22 @@ import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { ScrollArea } from "@/components/ui/scroll-area"
 
+import dataIntelligence from "@/app/images/data-intelligence.avif";
+import cloudTech from "@/app/images/cloud-tech.avif";
+import dataSecurity from "@/app/images/data-security.avif";
+import companyImg from "@/app/images/company.jpg";
+
+import industryPower from "@/app/images/industry-power.avif";
+import industryAutomotive from "@/app/images/industry-automotive.jpeg";
+import industryGovernment from "@/app/images/industry-government.jpeg";
+import industryVisualization from "@/app/images/industry-visualization.avif";
+
+import news1 from "@/app/images/news1.avif";
+import news2 from "@/app/images/news2.avif";
+import news3 from "@/app/images/news3.avif";
+
+import teclogo from "@/app/images/logo.png";
+
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('home')
@@ -72,23 +88,23 @@ export default function HomePage() {
     }
   }
 
-  const slides = [
+const slides = [
     {
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
+      image: dataIntelligence,
       title: "数据智能 引领未来",
       description: "聚数科技致力于为企业提供领先的数据智能解决方案，助力数字化转型"
     },
     {
-      image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
+      image: cloudTech,
       title: "云端技术 无限可能",
       description: "利用先进的云计算技术，为您的业务提供灵活、高效的解决方案"
     },
     {
-      image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
+      image: dataSecurity,
       title: "安全可靠 值得信赖",
       description: "我们的数据安全解决方案，为您的企业数据保驾护航"
     }
-  ]
+]
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -106,7 +122,7 @@ export default function HomePage() {
                   >
                     <Card className="overflow-hidden">
                       <Image
-                        src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                        src={companyImg}
                         alt="聚数科技公司图片"
                         width={600}
                         height={400}
@@ -242,19 +258,19 @@ export default function HomePage() {
                   title: "聚数科技完成新一轮融资",
                   desc: "致力于打造国内领先的数据智能平台，本轮融资将用于技术研发和市场拓展",
                   date: "2024-01-15",
-                  image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                  image: news1
                 },
                 {
                   title: "发布全新数据治理解决方案",
                   desc: "帮助企业实现数据资产的高效管理，提升数据质量和价值",
                   date: "2024-01-10",
-                  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                  image: news2
                 },
                 {
                   title: "荣获年度最佳数据服务商",
                   desc: "技术创新能力获得行业认可，彰显聚数科技在数据智能领域的领先地位",
                   date: "2024-01-05",
-                  image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                  image: news3
                 }
               ].map((news, index) => (
                 <motion.div
@@ -296,10 +312,10 @@ export default function HomePage() {
               <h2 className="text-3xl font-bold text-center mb-8">我们的客户</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
-                  { name: '电力', image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80' },
-                  { name: '汽车', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80' },
-                  { name: '政务数字化', image: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80' },
-                  { name: '数据可视化', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80' }
+                    { name: '电力', image: industryPower },
+                    { name: '汽车', image: industryAutomotive },
+                    { name: '政务数字化', image: industryGovernment },
+                    { name: '数据可视化', image: industryVisualization }
                 ].map((industry, index) => (
                   <motion.div
                     key={index}
@@ -384,7 +400,7 @@ export default function HomePage() {
         <nav className="w-full px-4 mx-auto flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/m_logo-ZaOsicv6g73pxEaatLn25uVahMDj92.png"
+              src={teclogo}
               alt="聚数科技"
               width={40}
               height={40}
@@ -702,10 +718,11 @@ export default function HomePage() {
                       {message.sender === 'agent' && (
                         <div className="flex items-center mb-1">
                           <Image
-                            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/m_logo-ZaOsicv6g73pxEaatLn25uVahMDj92.png"
+                            src={teclogo}
                             alt="Agent"
                             width={24}
                             height={24}
+                            style={{background:'#1f2937', padding:'2px'}}
                             className="rounded-full mr-2"
                           />
                           <span className="text-xs text-gray-500">客服</span>
