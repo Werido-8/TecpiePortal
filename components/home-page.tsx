@@ -11,9 +11,14 @@ import { Menu, X, Cpu, Cloud, Shield, ArrowRight, ChevronRight, MessageSquare, S
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import Particles from "react-tsparticles"
-import { loadFull } from "tsparticles"
-import type { Engine } from "tsparticles-engine"
+import { loadFull } from "tsparticles";
+
+
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim"; // 改用 slim 版本
+import type { Container, Engine, ISourceOptions } from "tsparticles-engine";
+
+
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -45,6 +50,65 @@ export default function HomePage() {
   const [company, setCompany] = useState('')
   const [message, setMessage] = useState('')
 
+ const particlesInit = useCallback(async (engine: Engine) => {
+    await loadSlim(engine);  // 使用 loadSlim 替代 loadFull
+  }, []);
+
+  const particlesLoaded = useCallback(async (container: Container | undefined) => {
+    console.log("Particles loaded!", container); // 添加日志
+  }, []);
+
+  
+ // 修改粒子配置
+const particlesOptions: ISourceOptions = {
+  background: {
+      color: {
+        value: "transparent",
+      },
+    },
+    fpsLimit: 120,
+    particles: {
+      color: {
+        value: "#6b7280",
+      },
+      links: {
+        color: "#6b7280",
+        distance: 150,
+        enable: true,
+        opacity: 0.3,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 1,
+        direction: "none" as const,
+        random: false,
+        straight: false,
+        outModes: {
+          default: "bounce" as const,
+        },
+      },
+      number: {
+        density: {
+          enable: true,
+          area: 800,
+        },
+        value: 80,
+      },
+      opacity: {
+        value: 0.5,
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        value: { min: 1, max: 3 },
+      },
+    },
+    detectRetina: true,
+}
+  
+
   // Customer service chat states
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
@@ -62,11 +126,7 @@ export default function HomePage() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
-
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadFull(engine)
-  }, [])
-
+ 
   const handleConsultationSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Here you would typically send this data to your backend
@@ -394,6 +454,21 @@ const slides = [
 
   return (
     <div className="flex flex-col min-h-screen">
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={particlesOptions}
+        className="absolute inset-0"
+        style={{
+          position: 'fixed',
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }}
+      />
+
       <style jsx>{emblaStyles}</style>
       {/* 导航栏 */}
       <header className={`bg-[#1f2937] shadow-sm sticky top-0 z-50 transition-all duration-300 ${scrollY > 50 ? 'py-2' : 'py-4'}`}>
@@ -462,90 +537,9 @@ const slides = [
         </AnimatePresence>
       </header>
 
-      <main className="flex-grow">
+      <main className="flex-grow">       
         {activeTab === 'home' && (
           <section className="relative w-screen overflow-hidden">
-            <Particles
-              id="tsparticles"
-              init={particlesInit}
-              options={{
-                background: {
-                  color: {
-                    value: "transparent",
-                  },
-                },
-                fullScreen: {
-                  enable: false,
-                  zIndex: 1
-                },
-                fpsLimit: 120,
-                interactivity: {
-                  events: {
-                    onClick: {
-                      enable: true,
-                      mode: "push",
-                    },
-                    onHover: {
-                      enable: true,
-                      mode: "repulse",
-                    },
-                    resize: true,
-                  },
-                  modes: {
-                    push: {
-                      quantity: 4,
-                    },
-                    repulse: {
-                      distance: 200,
-                      duration: 0.4,
-                    },
-                  },
-                },
-                particles: {
-                  color: {
-                    value: "#ffffff",
-                  },
-                  links: {
-                    color: "#ffffff",
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.5,
-                    width: 1,
-                  },
-                  collisions: {
-                    enable: true,
-                  },
-                  move: {
-                    direction: "none",
-                    enable: true,
-                    outModes: {
-                      default: "bounce",
-                    },
-                    random: false,
-                    speed: 2,
-                    straight: false,
-                  },
-                  number: {
-                    density: {
-                      enable: true,
-                      area: 800,
-                    },
-                    value: 80,
-                  },
-                  opacity: {
-                    value: 0.5,
-                  },
-                  shape: {
-                    type: "circle",
-                  },
-                  size: {
-                    value: { min: 1, max: 5 },
-                  },
-                },
-                detectRetina: true,
-              }}
-              className="absolute inset-0"
-            />
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
             <div className="embla relative w-full max-h-[500px]" ref={emblaRef}>
               <div className="embla__container">
@@ -578,6 +572,7 @@ const slides = [
           </section>
         )}
 
+      
         <AnimatePresence mode="wait">
           <motion.section
             key={activeTab}
